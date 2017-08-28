@@ -14,7 +14,8 @@ create table lugar
 create table compra
   (
     compraid serial primary key,
-    lugarid integer references lugar(lugarid)
+    lugarid integer references lugar(lugarid),
+    fecha date
   );
 
 create table unidad

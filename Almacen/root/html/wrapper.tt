@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Almacen Familiar</title>
+  <meta charset='UTF-8'>
+  <script src="/static/lib/jquery-3.2.1.min.js"></script>
+  <link href="/static/lib/w3.css" rel="stylesheet" >
+</head>
+<body>
+  <header><a href='/'>Almacen</a></header>
+  [% content %]
+</body>
+</html>

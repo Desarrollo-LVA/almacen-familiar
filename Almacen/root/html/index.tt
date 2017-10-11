@@ -1,0 +1,43 @@
+<table class="w3-table-all" id='inventario'>
+  <thead><tr><th>Artículo</th><th>Cantidad</th><th>Unidad</th><th>Caducidad</th></tr></thead>
+  [% FOREACH concepto IN listado %]
+    [% caducidad = concepto.caducidad.collapse %]
+    <tr><td>[% concepto.articuloid.nombre %]</td><td>[% concepto.cantidad %]</td><td>[% concepto.unidadid.nombre %]</td><td>[% concepto.caducidad.year %]-[% concepto.caducidad.month %]-[% concepto.caducidad.day %]</td></tr>
+  [% END %]
+</table>
+Art&iacute;culo:<input id='articulo' list='articulos'>
+Cantidad:<input id='cantidad'>
+Unidad:<input id='unidad' list='unidades'>
+Caducidad:<input id='vencimiento'>
+<button onclick='agregarMovimiento()'>Agregar</button>
+<datalist id='articulos'>
+  [% FOREACH articulo IN articulos %]
+    <option>[% articulo.nombre %]</option>
+  [% END %]
+</datalist>
+<datalist id="unidades">
+  [% FOREACH unidad IN unidades %]
+    <option>[% unidad.nombre %]</option>
+  [% END %]
+</datalist>
+
+<a href="/articulos">Configurar articulos</a>
+
+<script>
+  function agregarMovimiento()
+  {
+    var varticulo = $('#articulo').val();
+    var vcantidad = $('#cantidad').val();
+    var vunidad = $('#unidad').val();
+    var vcaducidad = $('#vencimiento').val();
+
+    $.ajax({
+      url:'/inventario/agregar',
+      data:{articulo:varticulo, cantidad:vcantidad, unidad:vunidad, vencimiento:vcaducidad},
+      success:function(resp)
+      {
+        $('#inventario').append('<tr><td>'+resp.articulo+'</td><td>'+resp.cantidad+'</td><td>'+resp.unidad+'</td><td>'+resp.caducidad+'</td></tr>');
+      }
+    });
+  }
+</script>

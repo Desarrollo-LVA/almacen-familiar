@@ -1,27 +1,64 @@
-<table class="w3-table-all" id='inventario'>
-  <thead><tr><th>Artículo</th><th>Cantidad</th><th>Unidad</th><th>Caducidad</th></tr></thead>
-  [% FOREACH concepto IN listado %]
-    [% caducidad = concepto.caducidad.collapse %]
-    <tr><td>[% concepto.articuloid.nombre %]</td><td>[% concepto.cantidad %]</td><td>[% concepto.unidadid.nombre %]</td><td>[% concepto.caducidad.year %]-[% concepto.caducidad.month %]-[% concepto.caducidad.day %]</td></tr>
-  [% END %]
-</table>
-Art&iacute;culo:<input id='articulo' list='articulos'>
-Cantidad:<input id='cantidad'>
-Unidad:<input id='unidad' list='unidades'>
-Caducidad:<input id='vencimiento'>
-<button onclick='agregarMovimiento()'>Agregar</button>
-<datalist id='articulos'>
-  [% FOREACH articulo IN articulos %]
-    <option>[% articulo.nombre %]</option>
-  [% END %]
-</datalist>
-<datalist id="unidades">
-  [% FOREACH unidad IN unidades %]
-    <option>[% unidad.nombre %]</option>
-  [% END %]
-</datalist>
+<div class="container">
+    <table class="table" id="inventario">
+      <thead>
+        <tr><th>Artículo</th><th>Cantidad</th><th>Unidad</th><th>Caducidad</th></tr>
+      </thead>
+      <tbody>
+        [% FOREACH concepto IN listado %]
+        [% caducidad = concepto.caducidad.collapse %]
+        <tr><td>[% concepto.articulo.nombre %]</td><td>[% concepto.cantidad %]</td><td>[% concepto.unidad.nombre %]</td><td>[% concepto.caducidad.year %]-[% concepto.caducidad.month %]-[% concepto.caducidad.day %]</td></tr>
+        [% END %]
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inventario">
+      Agregar
+    </button>
+    <a href="http://localhost:3000/articulos">Configurar articulos</a>
+</div>
 
-<a href="/articulos">Configurar articulos</a>
+<div class="modal" role="dialog" id="modal-inventario">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar al inventario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" >
+                        <label for="articulo">Artículo:</label>
+                        <input id="articulo" class="form-control" list="articulos">
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input id="cantidad" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="unidad">Unidad:</label>
+                        <input id="unidad" list="unidades" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="vencimiento">Caducidad:</label>
+                        <input id="vencimiento" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="agregarMovimiento()" class="btn btn-primary">Agregar</button>
+                </div>
+            </div>
+        </div>
+        <datalist id='articulos'>
+          [% FOREACH articulo IN articulos %]
+          <option>[% articulo.nombre %]</option>
+          [% END %]
+        </datalist>
+        <datalist id="unidades">
+          [% FOREACH unidad IN unidades %]
+          <option>[% unidad.nombre %]</option>
+          [% END %]
+        </datalist>
+    </div>
 
 <script>
   function agregarMovimiento()

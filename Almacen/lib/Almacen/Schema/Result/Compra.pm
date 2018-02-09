@@ -1,12 +1,12 @@
 use utf8;
-package Almacen::Schema::Result::Articulo;
+package Almacen::Schema::Result::Compra;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Almacen::Schema::Result::Articulo
+Almacen::Schema::Result::Compra
 
 =cut
 
@@ -30,11 +30,11 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<articulo>
+=head1 TABLE: C<compra>
 
 =cut
 
-__PACKAGE__->table("articulo");
+__PACKAGE__->table("compra");
 
 =head1 ACCESSORS
 
@@ -43,11 +43,17 @@ __PACKAGE__->table("articulo");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'articulo_id_seq'
+  sequence: 'compra_id_seq'
 
-=head2 nombre
+=head2 lugar
 
-  data_type: 'text'
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 1
+
+=head2 fecha
+
+  data_type: 'date'
   is_nullable: 1
 
 =cut
@@ -58,10 +64,12 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "articulo_id_seq",
+    sequence          => "compra_id_seq",
   },
-  "nombre",
-  { data_type => "text", is_nullable => 1 },
+  "lugar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
+  "fecha",
+  { data_type => "date", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -89,13 +97,33 @@ Related object: L<Almacen::Schema::Result::Detalle>
 __PACKAGE__->has_many(
   "detalles",
   "Almacen::Schema::Result::Detalle",
-  { "foreign.articulo" => "self.id" },
+  { "foreign.compra" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 lugar
+
+Type: belongs_to
+
+Related object: L<Almacen::Schema::Result::Lugar>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "lugar",
+  "Almacen::Schema::Result::Lugar",
+  { id => "lugar" },
+  {
+    is_deferrable => 0,
+    join_type     => "LEFT",
+    on_delete     => "NO ACTION",
+    on_update     => "NO ACTION",
+  },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.07045 @ 2018-02-08 20:20:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:v0N3ENKojZ8ShgoFHdff5w
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Um6G/ToZN+/N/CidOC8KBg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -38,12 +38,12 @@ __PACKAGE__->table("unidad");
 
 =head1 ACCESSORS
 
-=head2 unidadid
+=head2 id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'unidad_unidadid_seq'
+  sequence: 'unidad_id_seq'
 
 =head2 nombre
 
@@ -53,12 +53,12 @@ __PACKAGE__->table("unidad");
 =cut
 
 __PACKAGE__->add_columns(
-  "unidadid",
+  "id",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "unidad_unidadid_seq",
+    sequence          => "unidad_id_seq",
   },
   "nombre",
   { data_type => "text", is_nullable => 1 },
@@ -68,13 +68,13 @@ __PACKAGE__->add_columns(
 
 =over 4
 
-=item * L</unidadid>
+=item * L</id>
 
 =back
 
 =cut
 
-__PACKAGE__->set_primary_key("unidadid");
+__PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
@@ -89,13 +89,13 @@ Related object: L<Almacen::Schema::Result::Detalle>
 __PACKAGE__->has_many(
   "detalles",
   "Almacen::Schema::Result::Detalle",
-  { "foreign.unidadid" => "self.unidadid" },
+  { "foreign.unidad" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07046 @ 2017-09-16 16:59:52
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:8bigliO9pQ+NeQLWwDlp6A
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2018-02-08 20:20:11
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bUlAPZqnFTTLmo5JPuU9ag
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

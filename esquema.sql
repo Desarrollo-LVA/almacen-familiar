@@ -1,35 +1,36 @@
---Diseño de base de datos
-create table articulos
-  (
-    articuloid serial primary key,
-    nombre text
-  );
+create table articulo
+(
+  id serial primary key,
+  nombre text
+);
 
 create table lugar
-  (
-    lugarid serial primary key,
-    nombre text
-  );
+(
+  id serial primary key,
+  nombre text
+);
 
 create table compra
-  (
-    compraid serial primary key,
-    lugarid integer references lugar(lugarid),
-    fecha date
-  );
+(
+  id serial primary key,
+  lugar integer references lugar(id),
+  fecha date
+);
 
 create table unidad
-  (
-    unidadid serial primary key,
-    nombre text
-  );
+(
+  id serial primary key,
+  nombre text
+);
 
 create table detalle
-  (
-    detalleid serial primary key,
-    compraid integer references compra(compraid),
-    articuloid integer references articulos(articuloid),
-    unidadid integer references unidad(unidadid),
-    cantidad numeric,
-    precio numeric
-  );
+(
+  id serial primary key,
+  compra integer references compra(id),
+  articulo integer references articulo(id),
+  unidad integer references unidad(id),
+  cantidad numeric,
+  precio numeric,
+  caducidad date,
+  fecharegistro date default current_date
+);

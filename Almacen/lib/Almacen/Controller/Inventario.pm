@@ -29,8 +29,8 @@ sub agregar : Local {
   });
 
   my $detalle = $c->model('DB::Detalle')->create({
-    articuloid=>$articulo->articuloid(),
-    unidadid=>$unidad->unidadid(),
+    articulo=>$articulo->id(),
+    unidad=>$unidad->id(),
     cantidad=>$cantidad,
     caducidad=>$vencimiento
   });

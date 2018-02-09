@@ -1,12 +1,12 @@
 use utf8;
-package Almacen::Schema::Result::Articulo;
+package Almacen::Schema::Result::Lugar;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Almacen::Schema::Result::Articulo
+Almacen::Schema::Result::Lugar
 
 =cut
 
@@ -30,11 +30,11 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<articulo>
+=head1 TABLE: C<lugar>
 
 =cut
 
-__PACKAGE__->table("articulo");
+__PACKAGE__->table("lugar");
 
 =head1 ACCESSORS
 
@@ -43,7 +43,7 @@ __PACKAGE__->table("articulo");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'articulo_id_seq'
+  sequence: 'lugar_id_seq'
 
 =head2 nombre
 
@@ -58,7 +58,7 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "articulo_id_seq",
+    sequence          => "lugar_id_seq",
   },
   "nombre",
   { data_type => "text", is_nullable => 1 },
@@ -78,24 +78,24 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 detalles
+=head2 compras
 
 Type: has_many
 
-Related object: L<Almacen::Schema::Result::Detalle>
+Related object: L<Almacen::Schema::Result::Compra>
 
 =cut
 
 __PACKAGE__->has_many(
-  "detalles",
-  "Almacen::Schema::Result::Detalle",
-  { "foreign.articulo" => "self.id" },
+  "compras",
+  "Almacen::Schema::Result::Compra",
+  { "foreign.lugar" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.07045 @ 2018-02-08 20:20:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:v0N3ENKojZ8ShgoFHdff5w
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Z6IGchaD+1AYKn3FplNLVA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

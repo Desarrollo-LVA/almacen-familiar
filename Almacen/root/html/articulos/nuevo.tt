@@ -1,0 +1,4 @@
+<form method="post">
+  <input name="nombre" placeholder="Nombre del artículo" />
+  <input type="submit" value="Agregar" />
+</form>

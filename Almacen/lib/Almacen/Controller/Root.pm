@@ -6,13 +6,25 @@ BEGIN { extends 'Catalyst::Controller' }
 
 __PACKAGE__->config(namespace => '');
 
-sub index :Path :Args(0) {
-  my ( $self, $c ) = @_;
+=encoding utf-8
 
-  $c->stash->{listado} = [$c->model('DB::Detalle')->search({},{order_by=>'caducidad'})->all];
-  $c->stash->{articulos} = [$c->model('DB::Articulo')->search({},{})->all];
-  $c->stash->{unidades} = [$c->model('DB::Unidad')->search({},{})->all];
-}
+=head1 NAME
+
+Almacen::Controller::Root - Root Controller for Almacen
+
+=head1 DESCRIPTION
+
+[enter your description here]
+
+=head1 METHODS
+
+=head2 index
+
+The root page (/)
+
+=cut
+
+sub index :Path :Args(0) {}
 
 =head2 default
 
@@ -36,7 +48,7 @@ sub end : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 
-José Angel Leyva Portilla,,,
+Familia Leyva Hernandez,,,
 
 =head1 LICENSE
 

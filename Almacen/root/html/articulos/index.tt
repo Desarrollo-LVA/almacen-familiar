@@ -1,31 +1,5 @@
-<table>
-<tr><th>Nombre</th><th>Rotar</th></tr>
 [% FOREACH articulo IN articulos %]
-<tr>
-  <td>[% articulo.nombre %]</td>
-  <td>Cada:
-    <input size='2' id='factor_[% articulo.articuloid %]' value="[% articulo.factorfrecuencia %]" />
-    <select id='frecuencia_[% articulo.articuloid %]'>
-    [% FOREACH frecuencia IN frecuencias %]
-    <option value='[% frecuencia.id %]' [% IF frecuencia.id == articulo.frecuencia.id %] selected [% END %]>[% frecuencia.nombre %]</option>
-    [% END %]
-    </select>
-    <button onclick="fijarFrecuencia([% articulo.articuloid %])">Fijar rotación</button></td>
-</tr>
+<div>[% articulo.nombre %]<a href="/articulos/detalle/[% articulo.id %]">Detalle</a><a href="/articulos/eliminar/[% articulo.id %]">Eliminar</a></div>
 [% END %]
-</table>
-<script>
-  function fijarFrecuencia(articuloid)
-  {
-    var vFrecuencia = $('#frecuencia_'+articuloid).val();
-    var vFactor = $('#factor_'+articuloid).val();
 
-    $.ajax({
-      url:"/articulos/rotacion",
-      data:{articulo:articuloid, frecuencia:vFrecuencia, factor:vFactor},
-      success:function(resp){
-        alert(resp);
-      }
-    });
-  }
-</script>
+<a href="/articulos/nuevo">Agregar</a>

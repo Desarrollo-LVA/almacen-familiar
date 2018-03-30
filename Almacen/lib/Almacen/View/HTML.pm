@@ -6,12 +6,10 @@ extends 'Catalyst::View::TT';
 
 __PACKAGE__->config(
     TEMPLATE_EXTENSION => '.tt',
-    INCLUDE_PATH => [
-      Almacen->path_to('root','html')
-    ],
     render_die => 1,
-    ENCODING=>'utf-8',
-    WRAPPER=>'wrapper.tt'
+    INCLUDE_PATH => [Almacen->path_to('root','html')],
+    WRAPPER => 'wrapper.tt',
+    ENCODING => 'utf-8'
 );
 
 =head1 NAME
@@ -28,7 +26,7 @@ L<Almacen>
 
 =head1 AUTHOR
 
-José Angel Leyva Portilla,,,
+Familia Leyva Hernandez,,,
 
 =head1 LICENSE
 

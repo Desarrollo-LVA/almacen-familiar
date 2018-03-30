@@ -1,0 +1,2 @@
+<div>Nombre: [% articulo.nombre %]</div>
+<a href="/articulos/eliminar/[% articulo.id %]">Modificar</a>

@@ -9,7 +9,7 @@ use Module::Install::Catalyst; # Complain loudly if you don't have
 name 'Almacen';
 all_from 'lib/Almacen.pm';
 
-requires 'Catalyst::Runtime' => '5.90114';
+requires 'Catalyst::Runtime' => '5.90103';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';

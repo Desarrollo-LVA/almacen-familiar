@@ -7,7 +7,7 @@ __PACKAGE__->config(
     schema_class => 'Almacen::Schema',
     
     connect_info => {
-        dsn => 'dbi:Pg:dbname=almacen',
+        dsn => 'dbi:Pg:dbname=almacen-familiar',
         user => '',
         password => '',
     }
@@ -31,7 +31,7 @@ Catalyst::Helper::Model::DBIC::Schema - 0.65
 
 =head1 AUTHOR
 
-José Angel Leyva Portilla
+Familia Leyva Hernandez
 
 =head1 LICENSE
 
